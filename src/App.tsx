@@ -1,38 +1,102 @@
-import { About } from "./components/About";
-import { Cta } from "./components/Cta";
-import { FAQ } from "./components/FAQ";
-import { Features } from "./components/Features";
-import { Footer } from "./components/Footer";
-import { Hero } from "./components/Hero";
-import { HowItWorks } from "./components/HowItWorks";
-import { Navbar } from "./components/Navbar";
-import { Newsletter } from "./components/Newsletter";
-import { Pricing } from "./components/Pricing";
-import { ScrollToTop } from "./components/ScrollToTop";
-import { Services } from "./components/Services";
-import { Sponsors } from "./components/Sponsors";
-import { Team } from "./components/Team";
-import { Testimonials } from "./components/Testimonials";
-import "./App.css";
+import clsx from "clsx";
+import { ComponentProps, ReactNode } from "react";
+import { Container } from "./components/primitives/Container";
+import { MarketingLayout } from "./layout/Marketing";
+import { BrowserRouter } from "react-router-dom";
+import style from "./app.module.css";
+
+interface FeatureProps extends Omit<ComponentProps<"div">, "title"> {
+  description: ReactNode;
+  title: ReactNode;
+}
+
+function Feature({ title, description, className, ...props }: FeatureProps) {
+  return (
+    <div className={clsx(className, style.featuresFeature)} {...props}>
+      <h4 className={style.featuresFeatureTitle}>{title}</h4>
+      <p className={style.featuresFeatureDescription}>{description}</p>
+    </div>
+  );
+}
 
 function App() {
   return (
     <>
-      <Navbar />
-      <Hero />
-      <Sponsors />
-      <About />
-      <HowItWorks />
-      <Features />
-      <Services />
-      <Cta />
-      <Testimonials />
-      <Team />
-      <Pricing />
-      <Newsletter />
-      <FAQ />
-      <Footer />
-      <ScrollToTop />
+      <BrowserRouter basename="/">
+        <MarketingLayout>
+          <Container className={style.section}>
+            <div className={style.heroInfo}>
+              <h1 className={style.heroTitle}>
+                GenAI Insights for Smarter Healthcare
+              </h1>
+              <p className={style.heroLead}>
+                Revolutionizing Medical Imaging with AI-driven Reports and
+                Recommendations.
+              </p>
+            </div>
+            <div className={style.heroActions}></div>
+          </Container>
+          <Container className={style.section}>
+            <h2 className={style.sectionTitle}>Features</h2>
+            <div className={style.featuresGrid}>
+              <Feature
+                description={
+                  <>
+                    Revolutionizing medical diagnostics with cutting-edge
+                    Generative AI technology.
+                  </>
+                }
+                title="GenAI Diagnostics"
+              />
+              <Feature
+                description={
+                  <>
+                    Providing actionable, data-driven insights for faster and
+                    smarter healthcare decisions.
+                  </>
+                }
+                title="Insight Engine"
+              />
+              <Feature
+                description={
+                  <>
+                    Delivering unparalleled accuracy in diagnosing medical
+                    conditions through AI-powered image analysis.
+                  </>
+                }
+                title="Precision Analysis"
+              />
+              <Feature
+                description={
+                  <>
+                    Enabling interactive, real-time Q&A with medical images for
+                    personalized diagnostic insights.
+                  </>
+                }
+                title="Conversational AI"
+              />
+              <Feature
+                description={
+                  <>
+                    Streamlining the creation of detailed, AI-generated
+                    diagnostic reports and recommendations.
+                  </>
+                }
+                title="Automated Reporting"
+              />
+              <Feature
+                description={
+                  <>
+                    Seamlessly integrating with existing healthcare systems to
+                    enhance workflow and efficiency.
+                  </>
+                }
+                title="Smart Integration"
+              />
+            </div>
+          </Container>
+        </MarketingLayout>
+      </BrowserRouter>
     </>
   );
 }
