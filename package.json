@@ -20,7 +20,8 @@
     "react-router-dom": "^6.26.2",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
-    "vite-plugin-react": "^4.0.1"
+    "vite-plugin-react": "^4.0.1",
+    "website": "file:"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
